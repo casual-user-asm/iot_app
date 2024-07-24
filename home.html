@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>IoT Management Dashboard</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f9;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+            }
+
+            section {
+                width: 100%;
+                max-width: 800px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                color: #007bff;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .form-row {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            input,
+            button {
+                margin-bottom: 10px;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            input {
+                background-color: #f9f9f9;
+            }
+
+            button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            .info-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            #details {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            #details pre {
+                background-color: #f4f4f4;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                max-height: 300px;
+                overflow-y: auto;
+            }
+
+            .table-container {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            th,
+            td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #007bff;
+                color: white;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .center {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>IoT Management Dashboard</h1>
+
+        <section>
+            <h2>Create User</h2>
+            <form id="createUserForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="userName"
+                        placeholder="Name"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="email"
+                        id="userEmail"
+                        placeholder="Email"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="password"
+                        id="userPassword"
+                        placeholder="Password"
+                        required
+                    />
+                </div>
+                <button type="submit">Create User</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Create Location</h2>
+            <form id="createLocationForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="locationName"
+                        placeholder="Location Name"
+                        required
+                    />
+                </div>
+                <button type="submit">Create Location</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Create Device</h2>
+            <form id="createDeviceForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceName"
+                        placeholder="Device Name"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceType"
+                        placeholder="Device Type"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceLogin"
+                        placeholder="Device Login"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="password"
+                        id="devicePassword"
+                        placeholder="Device Password"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceLocationId"
+                        placeholder="Location ID (optional)"
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceApiUserId"
+                        placeholder="API User ID"
+                        required
+                    />
+                </div>
+                <button type="submit">Create Device</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Update Device</h2>
+            <form id="updateDeviceForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceUpdateId"
+                        placeholder="Device Id for update"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceUpdateName"
+                        placeholder="Device Name"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceUpdateType"
+                        placeholder="Device Type"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deviceUpdateLogin"
+                        placeholder="Device Login"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="password"
+                        id="deviceUpdatePassword"
+                        placeholder="Device Password"
+                        required
+                    />
+                </div>
+                <button type="submit">Update Device</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Delete User</h2>
+            <form id="deleteUserForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deleteUser"
+                        placeholder="User Id for delete"
+                        required
+                    />
+                </div>
+                <button type="submit">Delete User</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Delete Device</h2>
+            <form id="deleteDeviceForm" class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="deleteDevice"
+                        placeholder="Device Id for delete"
+                        required
+                    />
+                </div>
+                <button type="submit">Delete Device</button>
+            </form>
+        </section>
+
+        <section id="info">
+            <h2>View All Users</h2>
+            <button onclick="fetchAllUsers('users')">View All Users</button>
+            <h2>View All Devices</h2>
+            <button onclick="fetchAllDevices('devices')">
+                View All Devices
+            </button>
+            <div id="allRecords" class="table-container"></div>
+        </section>
+
+        <section id="viewSingle">
+            <h2>View Single Item</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="recordId"
+                        placeholder="Enter ID to view"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <select id="recordType" required>
+                        <option value="users">User</option>
+                        <option value="devices">Device</option>
+                    </select>
+                </div>
+                <button onclick="fetchSingle()">View Info</button>
+            </div>
+            <div id="details"></div>
+        </section>
+
+        <script>
+            // Function to handle form submission for creating a user
+            document
+                .getElementById('createUserForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const name = document.getElementById('userName').value
+                    const email = document.getElementById('userEmail').value
+                    const password =
+                        document.getElementById('userPassword').value
+
+                    const response = await fetch('http://0.0.0.0:8080/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, email, password }),
+                    })
+
+                    if (response.ok) {
+                        alert('User created successfully!')
+                        resetForm('createUserForm')
+                    } else {
+                        alert('Failed to create user.')
+                    }
+                })
+
+            // Function to handle form submission for creating a location
+            document
+                .getElementById('createLocationForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const name = document.getElementById('locationName').value
+
+                    const response = await fetch(
+                        'http://0.0.0.0:8080/locations',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ name }),
+                        }
+                    )
+
+                    if (response.ok) {
+                        alert('Location created successfully!')
+                        resetForm('createLocationForm')
+                    } else {
+                        alert('Failed to create location.')
+                    }
+                })
+
+            // Function to handle form submission for creating a device
+            document
+                .getElementById('createDeviceForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const name = document.getElementById('deviceName').value
+                    const type = document.getElementById('deviceType').value
+                    const login = document.getElementById('deviceLogin').value
+                    const password =
+                        document.getElementById('devicePassword').value
+                    const locationId =
+                        document.getElementById('deviceLocationId').value ||
+                        null
+                    const apiUserId =
+                        document.getElementById('deviceApiUserId').value
+
+                    const response = await fetch(
+                        'http://0.0.0.0:8080/devices',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name,
+                                type,
+                                login,
+                                password,
+                                location_id: locationId,
+                                api_user: apiUserId,
+                            }),
+                        }
+                    )
+
+                    if (response.ok) {
+                        alert('Device created successfully!')
+                        resetForm('createDeviceForm')
+                    } else {
+                        alert('Failed to create device.')
+                    }
+                })
+
+            document
+                .getElementById('updateDeviceForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const id = document.getElementById('deviceUpdateId').value
+                    const name =
+                        document.getElementById('deviceUpdateName').value
+                    const type =
+                        document.getElementById('deviceUpdateType').value
+                    const login =
+                        document.getElementById('deviceUpdateLogin').value
+                    const password = document.getElementById(
+                        'deviceUpdatePassword'
+                    ).value
+
+                    const response = await fetch(
+                        `http://0.0.0.0:8080/devices/${id}`,
+                        {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name,
+                                type,
+                                login,
+                                password,
+                            }),
+                        }
+                    )
+
+                    if (response.ok) {
+                        alert('Device created successfully!')
+                        resetForm('updateDeviceForm')
+                    } else {
+                        alert('Failed to create device.')
+                    }
+                })
+            // Function to fetch and display all records
+            async function fetchAllDevices(type) {
+                const response = await fetch(`http://0.0.0.0:8080/${type}`)
+                if (response.ok) {
+                    const data = await response.json()
+                    const table = generateTable(data, type)
+                    document.getElementById('allRecords').innerHTML = table
+                } else {
+                    document.getElementById(
+                        'allRecords'
+                    ).innerHTML = `<p>No records found</p>`
+                }
+            }
+
+            async function fetchAllUsers(type) {
+                const response = await fetch(`http://0.0.0.0:8080/${type}`)
+                if (response.ok) {
+                    const data = await response.json()
+                    const table = generateTable(data, type)
+                    document.getElementById('allRecords').innerHTML = table
+                } else {
+                    document.getElementById(
+                        'allRecords'
+                    ).innerHTML = `<p>No records found</p>`
+                }
+            }
+            // Function to fetch and display a single record
+            async function fetchSingle() {
+                const id = document.getElementById('recordId').value
+                const type = document.getElementById('recordType').value
+
+                const response = await fetch(
+                    `http://0.0.0.0:8080/${type}/${id}`
+                )
+                if (response.ok) {
+                    const data = await response.json()
+                    document.getElementById(
+                        'details'
+                    ).innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`
+                } else {
+                    document.getElementById('details').innerHTML = `<p>${
+                        type.charAt(0).toUpperCase() + type.slice(1)
+                    } not found</p>`
+                }
+            }
+
+            document
+                .getElementById('deleteUserForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const id = document.getElementById('deleteUser').value
+
+                    const response = await fetch(
+                        `http://0.0.0.0:8080/users/${id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ id }),
+                        }
+                    )
+
+                    if (response.ok) {
+                        alert('Location created successfully!')
+                        resetForm('deleteUserForm')
+                    } else {
+                        alert('Failed to create location.')
+                    }
+                })
+
+            document
+                .getElementById('deleteDeviceForm')
+                .addEventListener('submit', async (event) => {
+                    event.preventDefault()
+                    const id = document.getElementById('deleteDevice').value
+
+                    const response = await fetch(
+                        `http://0.0.0.0:8080/devices/${id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ id }),
+                        }
+                    )
+
+                    if (response.ok) {
+                        alert('Location created successfully!')
+                        resetForm('deleteDeviceForm')
+                    } else {
+                        alert('Failed to create location.')
+                    }
+                })
+
+            // Helper function to generate an HTML table
+            function generateTable(data, type) {
+                let table = '<table><thead><tr>'
+
+                if (data.length === 0) return '<p>No records found</p>'
+
+                const keys = Object.keys(data[0])
+                keys.forEach((key) => {
+                    table += `<th>${
+                        key.charAt(0).toUpperCase() + key.slice(1)
+                    }</th>`
+                })
+                table += '</tr></thead><tbody>'
+
+                data.forEach((item) => {
+                    table += '<tr>'
+                    keys.forEach((key) => {
+                        table += `<td>${item[key]}</td>`
+                    })
+                    table += '</tr>'
+                })
+                table += '</tbody></table>'
+
+                return table
+            }
+            function resetForm(formId) {
+                const form = document.getElementById(formId)
+
+                form.reset()
+            }
+        </script>
+    </body>
+</html>
