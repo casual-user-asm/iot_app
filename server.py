@@ -2,7 +2,7 @@ from aiohttp import web
 from argon2 import PasswordHasher
 import logging
 
-from models import ApiUser, Device, Location, db
+from models import ApiUser, Device, Location
 
 ph = PasswordHasher()
 routes = web.RouteTableDef()
