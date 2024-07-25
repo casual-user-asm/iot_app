@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    web:
+        image: myapp
+        build: .
+        env_file:
+            - .env
+        container_name: iot_app
+        volumes:
+            - .:/app
+        ports:
+            - '8080:8080'
+        depends_on:
+            - db
+        command: sh -c "python init_db.py && python server.py"
+
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        container_name: my_database
+        volumes:
+            - pgdbdata:/var/lib/postgresql/data/
+
+volumes:
+    pgdbdata: null
