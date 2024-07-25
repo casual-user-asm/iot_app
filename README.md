@@ -1,32 +1,31 @@
-IoT Device Management API
+# IoT Device Management API
 
-This project provides an API for managing IoT devices, users, and locations. Built using aiohttp, Peewee, and PostgreSQL, it supports basic CRUD operations for users, devices, and locations.
-Table of Contents
+This project provides an API for managing IoT devices, users, and locations. Built using `aiohttp`, `Peewee`, and PostgreSQL, it supports basic CRUD operations for users, devices, and locations.
 
-    Installation
-    Configuration
-    Running the Application
-    API Endpoints
-        User Endpoints
-        Location Endpoints
-        Device Endpoints
-    Testing
-    Logging
-    Troubleshooting
-    License
+## Table of Contents
 
-Installation
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
+  - [User Endpoints](#user-endpoints)
+  - [Location Endpoints](#location-endpoints)
+  - [Device Endpoints](#device-endpoints)
+- [Testing](#testing)
+- [Logging](#logging)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
-    Clone the Repository:
+## Installation
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-repository/iot-device-management.git
+   cd iot-device-management
+
+    Create and Activate a Virtual Environment:
 
     bash
-
-git clone https://github.com/your-repository/iot-device-management.git
-cd iot-device-management
-
-Create and Activate a Virtual Environment:
-
-bash
 
 python -m venv venv
 # On Linux:
@@ -150,3 +149,8 @@ Troubleshooting
 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+arduino
+
+
+You can copy and paste this text into a `README.md` file in your GitHub repository.
