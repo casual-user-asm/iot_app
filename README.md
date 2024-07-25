@@ -1,11 +1,6 @@
-# IoT Device Management API
+# IoT Device Management
 
 Welcome to the IoT Device Management API! This project provides an API for managing IoT devices, users, and locations. Using `aiohttp`, `Peewee`, and PostgreSQL, it supports essential CRUD operations for managing users, devices, and locations. 
-
-**IoT Device Management API:** Efficiently manage your IoT ecosystem with a straightforward API that simplifies operations and integrates seamlessly with your setup.
-
-![IoT Device Management](https://your-image-url.com/image.png)
-*Enhance your IoT management experience with our streamlined API solution.*
 
 # Project Setup
 
@@ -29,17 +24,17 @@ You can run the project locally or use Docker for containerized deployment. Inst
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/your-repository/iot-device-management.git
-    cd iot-device-management
+    git clone https://github.com/casual-user-asm/iot_app.git
+    cd iot-app
     ```
 
 2. **Create and Configure `.env` File**:
     - Create a `.env` file in the root directory with the following content:
     ```plaintext
-    DATABASE_NAME=your_database_name
-    DATABASE_USER=your_database_user
-    DATABASE_PASSWORD=your_database_password
-    DATABASE_HOST=localhost
+    DATABASE_NAME=postgres
+    DATABASE_USER=postgres
+    DATABASE_PASSWORD=postgres
+    DATABASE_HOST=my_database
     DATABASE_PORT=5432
     ```
     - Ensure PostgreSQL is running and accessible using these credentials.
@@ -58,8 +53,8 @@ You can run the project locally or use Docker for containerized deployment. Inst
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/your-repository/iot-device-management.git
-    cd iot-device-management
+    git clone https://github.com/casual-user-asm/iot_app.git
+    cd iot-app
     ```
 
 2. **Create and Activate a Virtual Environment**:
@@ -78,9 +73,8 @@ You can run the project locally or use Docker for containerized deployment. Inst
 
 4. **Run the Application**:
     ```bash
-    python app.py
+    python server.py
     ```
-    By default, the application runs on port 8080. You can change this in the `app.py` file or through environment variables.
 
 ## API Endpoints
 
